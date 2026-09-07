@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Set theme BEFORE anything renders to prevent flash of wrong theme -->
+    <script>
+        // Force forest theme on auth pages (landing, login, signup)
+        document.documentElement.setAttribute('data-theme', 'forest');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}fAishon{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'image/favicon.png' %}">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        html { scrollbar-width: none; } /* Firefox */
+        body { -ms-overflow-style: none; } /* IE and Edge */
+        body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .floating-box {
+            border-radius: var(--rounded-box, 1rem);
+        }
+
+        /* Hide scrollbars globally */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        * {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body
+    class="min-h-screen w-full bg-base-200 text-base-content overflow-x-hidden overflow-y-auto flex flex-col transition-colors duration-300">
+{% if request.resolver_match.url_name == 'landing' %}
+    {% include 'nav-landing.html' %}
+{% elif request.resolver_match.url_name == 'login' %}
+    {% include 'nav-login.html' %}
+{% elif request.resolver_match.url_name == 'signup' %}
+    {% include 'nav-signup.html' %}
+{% endif %}
+
+
+
+
+
+    <!-- Main Content Area centered -->
+    <main class="flex-1 w-full max-w-7xl mx-auto flex flex-col justify-center items-center p-4 pt-24 pb-12 sm:py-12">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Base Scripts for Theme Fallback -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize lucide icons
+            lucide.createIcons();
+
+            // Force forest theme on auth pages
+            document.documentElement.setAttribute('data-theme', 'forest');
+        });
+    </script>
+</body>
+
+</html>

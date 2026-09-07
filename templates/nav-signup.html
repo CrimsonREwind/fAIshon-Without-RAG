@@ -1,0 +1,17 @@
+<!-- Transparent Navigation Bar -->
+<nav class="navbar absolute top-0 w-full z-[70] px-4 sm:px-8 py-4 bg-transparent ">
+    <div class="flex-1">
+        <a href="{% url 'landing' %}" class="btn btn-ghost text-2xl font-bold tracking-tighter uppercase relative z-[70]">faishon</a>
+    </div>
+    <!-- Desktop Nav -->
+  <div class="hidden lg:flex flex-1 justify-center relative z-[70]">
+
+  </div>
+  <div class="hidden lg:flex flex-1 justify-end relative z-[70]">
+      <a href="{% url 'login' %}" class="btn btn-primary btn-sm px-6 uppercase tracking-wider h-10 mt-1">Log In</a>
+    </div>
+    <!-- Mobile Nav -->
+  <div class="flex-1 flex justify-end lg:hidden relative z-[70]">
+        <a href="{% url 'login' %}" class="btn btn-primary btn-sm px-4 uppercase tracking-wider">Log In</a>
+    </div>
+</nav>
